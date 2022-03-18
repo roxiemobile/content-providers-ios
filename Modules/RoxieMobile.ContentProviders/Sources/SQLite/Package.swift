@@ -36,7 +36,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",
-            .upToNextMinor(from: "0.9.12")
+            .upToNextMinor(from: "0.9.14")
         ),
     ],
     targets: [
