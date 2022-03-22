@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/roxiemobile-forks/GRDB.swift",
         "state": {
           "branch": null,
-          "revision": "3076ca29b753d5cecdb7a7be0c3890e915e299f7",
-          "version": "5.7.4-patch.1"
+          "revision": "20d02f03522dffc43adf54d90c547733adaef765",
+          "version": "5.21.0-patch.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/roxiemobile/swift-commons.ios",
         "state": {
           "branch": null,
-          "revision": "907038a53b24692d41d9b7bf42f29fae355164e7",
-          "version": "1.6.0"
+          "revision": "298d9b961e63e59cdaec4f539290e5d21a5da70c",
+          "version": "1.6.3"
         }
       },
       {

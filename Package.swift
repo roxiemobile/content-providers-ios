@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -41,12 +41,12 @@ let package = Package(
         .package(
             name: "GRDB",
             url: "https://github.com/roxiemobile-forks/GRDB.swift",
-            .exact("5.7.4-patch.1")
+            .exact("5.21.0-patch.1")
         ),
         .package(
             name: "SwiftCommons",
             url: "https://github.com/roxiemobile/swift-commons.ios",
-            .upToNextMinor(from: "1.6.0")
+            .upToNextMinor(from: "1.6.3")
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",
