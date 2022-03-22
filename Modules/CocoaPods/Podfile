@@ -12,9 +12,9 @@ target 'ContentProviders.SQLite' do
   project '../RoxieMobile.ContentProviders/Sources/SQLite/ContentProviders.SQLite.xcodeproj'
 
   # Dependencies
-  pod 'CryptoSwift', '~> 1.3.8'
-  pod 'GRDB.swift/SQLCipher', '~> 5.7.4'
-  pod 'SwiftCommons/Concurrent', '~> 1.6.0'
-  pod 'SwiftCommons/Extensions', '~> 1.6.0'
-  pod 'ZIPFoundation', '~> 0.9.12'
+  pod 'CryptoSwift', '~> 1.4.3'
+  pod 'GRDB.swift/SQLCipher', '~> 5.21.0'
+  pod 'SwiftCommons/Concurrent', '~> 1.6.3'
+  pod 'SwiftCommons/Extensions', '~> 1.6.3'
+  pod 'ZIPFoundation', '~> 0.9.13'
 end
