@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -8,7 +8,7 @@ import PackageDescription
 let package = Package(
     name: "ContentProviders",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -36,21 +36,19 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/krzyzanowskim/CryptoSwift",
-            .upToNextMinor(from: "1.4.3")
+            exact: "1.4.3"
         ),
         .package(
-            name: "GRDB",
             url: "https://github.com/roxiemobile-forks/GRDB.swift",
-            .exact("5.21.0-patch.1")
+            exact: "5.21.0-patch.1"
         ),
         .package(
-            name: "SwiftCommons",
-            url: "https://github.com/roxiemobile/swift-commons.ios",
-            .upToNextMinor(from: "1.6.3")
+            url: "https://github.com/roxiemobile/swift-commons-ios",
+            exact: "1.6.3"
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",
-            .upToNextMinor(from: "0.9.14")
+            exact: "0.9.14"
         ),
     ],
     targets: [
@@ -70,10 +68,10 @@ let package = Package(
         .target(
             name: "ContentProvidersSQLite",
             dependencies: [
-                .byName(name: "CryptoSwift"),
-                .byName(name: "GRDB"),
-                .byName(name: "ZIPFoundation"),
-                .product(name: "SwiftCommonsExtensions", package: "SwiftCommons"),
+                "CryptoSwift",
+                "ZIPFoundation",
+                .product(name: "GRDB", package: "GRDB.swift"),
+                .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),
             ],
             path: "Modules/RoxieMobile.ContentProviders/Sources/SQLite/Sources"
         ),
