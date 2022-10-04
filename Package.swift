@@ -35,10 +35,6 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/krzyzanowskim/CryptoSwift",
-            exact: "1.4.3"
-        ),
-        .package(
             url: "https://github.com/roxiemobile-forks/GRDB.swift",
             exact: "5.21.0-patch.1"
         ),
@@ -68,7 +64,6 @@ let package = Package(
         .target(
             name: "ContentProvidersSQLite",
             dependencies: [
-                "CryptoSwift",
                 "ZIPFoundation",
                 .product(name: "GRDB", package: "GRDB.swift"),
                 .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),

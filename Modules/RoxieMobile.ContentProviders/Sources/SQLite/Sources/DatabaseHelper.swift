@@ -10,8 +10,8 @@
 // swiftlint:disable file_length type_body_length
 // ----------------------------------------------------------------------------
 
-import CryptoSwift
 import Foundation
+import CryptoKit
 import GRDB
 import SwiftCommonsConcurrent
 import SwiftCommonsLang
@@ -360,7 +360,7 @@ public class DatabaseHelper {
                             // @link https://www.guilmo.com/fmdb-with-sqlcipher-tutorial/
 
                             execute(dbQueue: dbQueueUnpacked,
-                                query: "ATTACH DATABASE '\(dstPath.path)' AS `encrypted` KEY '\(key.toHexString())';")
+                                query: "ATTACH DATABASE '\(dstPath.path)' AS `encrypted` KEY '\(key.hex())';")
                             execute(dbQueue: dbQueueUnpacked,
                                 query: "SELECT sqlcipher_export('encrypted');")
                             execute(dbQueue: dbQueueUnpacked,
@@ -503,4 +503,27 @@ public class DatabaseHelper {
 // MARK: - Variables
 
     private static let shared: DatabaseHelper = DatabaseHelper()
+}
+
+// ----------------------------------------------------------------------------
+
+extension Data {
+
+// MARK: - Methods
+
+    fileprivate func hex() -> String {
+        return self.map { String(format: "%02hhx", $0) }.joined()
+    }
+}
+
+// ----------------------------------------------------------------------------
+
+extension String {
+
+// MARK: - Methods
+
+    fileprivate func md5() -> String {
+        let digest = Insecure.MD5.hash(data: Data(self.utf8))
+        return digest.map { String(format: "%02hhx", $0) }.joined()
+    }
 }
