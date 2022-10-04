@@ -44,7 +44,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/roxiemobile/swift-commons-ios",
-            exact: "1.6.3"
+            exact: "1.7.0"
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",

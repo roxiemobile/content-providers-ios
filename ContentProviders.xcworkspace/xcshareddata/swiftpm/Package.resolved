@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/roxiemobile/swift-commons-ios",
       "state" : {
-        "revision" : "298d9b961e63e59cdaec4f539290e5d21a5da70c",
-        "version" : "1.6.3"
+        "revision" : "20a9a3390d112909fd32b482546df49a708cd9cf",
+        "version" : "1.7.0"
       }
     },
     {
