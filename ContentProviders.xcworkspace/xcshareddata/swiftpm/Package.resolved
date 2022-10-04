@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/roxiemobile-forks/GRDB.swift",
       "state" : {
-        "revision" : "20d02f03522dffc43adf54d90c547733adaef765",
-        "version" : "5.21.0-patch.1"
+        "revision" : "4d646def7eeff4b0a71ee2f956fdc8e678deb2f9",
+        "version" : "5.26.1-patch.1"
       }
     },
     {
