@@ -24,15 +24,26 @@ import SwiftCommonsLogging
 // @link https://github.com/android/platform_frameworks_base/blob/master/core/java/android/database/sqlite/SQLiteOpenHelper.java
 // swiftlint:disable:previous line_length
 
-@available(*, deprecated, message: "\n• Write a description.")
+// ----------------------------------------------------------------------------
+
+/// A helper class to manage database creation and version management.
 public class DatabaseHelper {
 
 // MARK: - Construction
 
-    @available(*, deprecated, message: "\n• Write a description.")
-    public init(databaseName: String?, version: Int, readonly: Bool = false, delegate: DatabaseOpenDelegate? = nil) {
+    /// Create a helper object to create, open, and/or manage a database.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the database file, or `nil` for an in-memory database.
+    ///   - version: The version number of the database (starting at 1);
+    ///     if the database is older, `upgradeDatabase` will be used to upgrade the database;
+    ///     if the database is newer, `downgradeDatabase` will be used to downgrade the database.
+    ///   - readonly: The flag to open the database for reading only.
+    ///   - delegate: The delegate of the database open helper.
+    ///
+    public init(name: String?, version: Int, readonly: Bool = false, delegate: DatabaseOpenDelegate? = nil) {
         self.databaseQueue = openOrCreateDatabase(
-            databaseName: databaseName,
+            databaseName: name,
             version: version,
             readonly: readonly,
             delegate: delegate
@@ -49,16 +60,16 @@ public class DatabaseHelper {
 
 // MARK: - Properties
 
-    @available(*, deprecated, message: "\n• Write a description.")
+    /// The database queue.
     public final private(set) var databaseQueue: DatabaseQueue?
 
-    @available(*, deprecated, message: "\n• Write a description.")
+    /// Gets or sets the UserVersion pragma for the current database.
     public var userVersion: Int {
         get {
             let version = try? self.databaseQueue?.read({ db -> Int? in
                 try Int.fetchOne(db, sql: "PRAGMA user_version;")
             })
-            return version ?? 0
+            return version ?? -1
         }
         set {
             do {
@@ -81,7 +92,6 @@ public class DatabaseHelper {
 
 // MARK: - Internal Methods
 
-    @available(*, deprecated, message: "\n• Write a description.")
     internal func unpackDatabaseTemplate(databaseName: String, assetPath: URL) -> URL? {
         var path: URL?
 
@@ -104,7 +114,6 @@ public class DatabaseHelper {
         return path
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     internal func makeDatabasePath(databaseName: String?) -> URL? {
 
         let name = sanitizeName(name: databaseName)
@@ -120,7 +129,6 @@ public class DatabaseHelper {
         return path
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     internal func makeTemplatePath(databaseName: String?) -> URL? {
 
         let name = sanitizeName(name: databaseName)
@@ -138,7 +146,6 @@ public class DatabaseHelper {
 
 // MARK: - Private Methods
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func validateDatabase(databaseName: String?, delegate: DatabaseOpenDelegate? = nil) -> Bool {
         var result = false
 
@@ -154,7 +161,6 @@ public class DatabaseHelper {
         return result
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func openOrCreateDatabase(
         databaseName: String?,
         version: Int,
@@ -184,7 +190,6 @@ public class DatabaseHelper {
         return dbQueue
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func openDatabase(
         // swiftlint:disable:previous function_body_length
         databaseName: String?,
@@ -242,7 +247,7 @@ public class DatabaseHelper {
                                 var exception: NSException?
 
                                 objcTry {
-                                    if (oldVersion == 0) {
+                                    if (oldVersion < 1) {
 
                                         delegate.databaseDidCreate(
                                             name: databaseName,
@@ -320,7 +325,6 @@ public class DatabaseHelper {
         return dbQueue
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func createDatabase(
         databaseName: String?,
         version: Int,
@@ -411,7 +415,6 @@ public class DatabaseHelper {
         return dbQueue
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func checkDatabaseIntegrity(dbQueue: DatabaseQueue?) -> Bool {
 
         let result = try? dbQueue?.read({ db -> String? in
@@ -421,7 +424,6 @@ public class DatabaseHelper {
         return result?.lowercased() == "ok"
     }
 
-    @available(*, deprecated, message: "\n• Write a description.")
     private func sanitizeName(name: String?) -> String {
 
         guard let name = name, name.isNotBlank else {
@@ -431,8 +433,7 @@ public class DatabaseHelper {
         return name
     }
 
-    // DEPRECATED: Code refactoring is needed
-    @available(*, deprecated, message: "\n• Code refactoring is required.\n• Write a description.")
+    // DEPRECATED: Code refactoring is required
     private func execute(dbQueue: DatabaseQueue?, query: String) {
 
         guard let dbQueue = dbQueue else {
@@ -449,8 +450,7 @@ public class DatabaseHelper {
         }
     }
 
-    // DEPRECATED: Code refactoring is needed
-    @available(*, deprecated, message: "\n• Code refactoring is required.\n• Write a description.")
+    // DEPRECATED: Code refactoring is required
     private func createDatabaseObject(path: String?, configuration: Configuration) -> DatabaseQueue {
 
         guard let path = path else {
@@ -465,8 +465,7 @@ public class DatabaseHelper {
         }
     }
 
-    // DEPRECATED: Code refactoring is needed
-    @available(*, deprecated, message: "\n• Code refactoring is required.\n• Write a description.")
+    // DEPRECATED: Code refactoring is required
     private func runTransaction(
         dbQueue: DatabaseQueue?,
         kind: Database.TransactionKind,

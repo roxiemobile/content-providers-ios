@@ -16,25 +16,27 @@ import ZIPFoundation
 
 // ----------------------------------------------------------------------------
 
-@available(*, deprecated)
+/// A helper class to manage database creation and version management.
 public class DatabaseHelperZip: DatabaseHelper {
 
 // MARK: - Construction
 
-    @available(*, deprecated, message: "\n• Write a description.")
-    public override init(
-        databaseName: String?,
-        version: Int,
-        readonly: Bool = false,
-        delegate: DatabaseOpenDelegate? = nil
-    ) {
-
-        super.init(databaseName: databaseName, version: version, readonly: readonly, delegate: delegate)
+    /// Create a helper object to create, open, and/or manage a database.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the database file, or `nil` for an in-memory database.
+    ///   - version: The version number of the database (starting at 1);
+    ///     if the database is older, `upgradeDatabase` will be used to upgrade the database;
+    ///     if the database is newer, `downgradeDatabase` will be used to downgrade the database.
+    ///   - readonly: The flag to open the database for reading only.
+    ///   - delegate: The delegate of the database open helper.
+    ///
+    public override init(name: String?, version: Int, readonly: Bool = false, delegate: DatabaseOpenDelegate? = nil) {
+        super.init(name: name, version: version, readonly: readonly, delegate: delegate)
     }
 
 // MARK: - Methods
 
-    @available(*, deprecated, message: "\n• Write a description.")
     internal override func unpackDatabaseTemplate(databaseName: String, assetPath: URL) -> URL? {
         var path: URL?
 
