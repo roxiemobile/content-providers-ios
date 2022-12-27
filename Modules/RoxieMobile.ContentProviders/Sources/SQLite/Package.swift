@@ -30,7 +30,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",
-            exact: "0.9.15"
+            exact: "0.9.16"
         ),
     ],
     targets: [
