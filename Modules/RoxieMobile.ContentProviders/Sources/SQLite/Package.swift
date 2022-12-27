@@ -20,13 +20,10 @@ let package = Package(
         ),
     ],
     dependencies: [
+        .package(path: "FileSystem"),
         .package(
             url: "https://github.com/roxiemobile-forks/GRDB.swift",
             exact: "5.26.1-patch.1"
-        ),
-        .package(
-            url: "https://github.com/roxiemobile/swift-commons-ios",
-            exact: "1.7.0"
         ),
         .package(
             url: "https://github.com/weichsel/ZIPFoundation",
@@ -38,8 +35,8 @@ let package = Package(
             name: "ContentProvidersSQLite",
             dependencies: [
                 "ZIPFoundation",
+                .product(name: "ContentProvidersFileSystem", package: "FileSystem"),
                 .product(name: "GRDB", package: "GRDB.swift"),
-                .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),
             ],
             path: "Sources"
         ),

@@ -1,32 +1,32 @@
 // ----------------------------------------------------------------------------
 //
-//  Roxie.DatabasesDirectory.swift
+//  Roxie+DatabasesDirectory.swift
 //
 //  @author     Alexander Bragin <bragin-av@roxiemobile.com>
-//  @copyright  Copyright (c) 2017, Roxie Mobile Ltd. All rights reserved.
+//  @copyright  Copyright (c) 2022, Roxie Mobile Ltd. All rights reserved.
 //  @link       https://www.roxiemobile.com/
 //
 // ----------------------------------------------------------------------------
 
 import Foundation
+import SwiftCommonsExtensions
 import SwiftCommonsLang
 import SwiftCommonsLogging
 
 // ----------------------------------------------------------------------------
 
-@available(*, deprecated, message: "\n• Move to the ContentProviders.FileSystem module.")
-public extension Roxie {
+extension Roxie {
 
 // MARK: - Properties
 
     /// Returns the databases directory for the current user.
-    static var databasesDirectory: URL? {
-        return Directories.Databases
+    public static var databasesDirectory: URL? {
+        return Directory.databases
     }
 
 // MARK: - Private Methods
 
-    private static func findOrCreateDirectory(_ pathComponent: String) -> URL? {
+    private static func getOrCreateDirectory(_ pathComponent: String) -> URL? {
 
         let dstURL: URL? = Roxie.documentsDirectory?.appendingPathComponent(pathComponent)
         let fm = FileManager.default
@@ -39,21 +39,20 @@ public extension Roxie {
                     try fm.createDirectory(atPath: dstPath, withIntermediateDirectories: true, attributes: nil)
                 }
                 catch {
-                    Logger.e(Roxie.self, "Can't create directory at URL ‘\(dstURL)’.", error)
+                    Logger.e(Roxie.self, "Failed to create directory at path: \(dstPath)", error)
                 }
             }
             FileManager.roxie_excludeFromBackup(at: dstURL)
         }
 
-        // Done
         return dstURL
     }
 
 // MARK: - Constants
 
-    private struct Directories {
+    private enum Directory {
 
         /// The databases directory for the current user.
-        static let Databases: URL? = Roxie.findOrCreateDirectory("Databases")
+        static let databases: URL? = Roxie.getOrCreateDirectory("Databases")
     }
 }

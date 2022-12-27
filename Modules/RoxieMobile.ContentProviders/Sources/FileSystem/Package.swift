@@ -19,10 +19,23 @@ let package = Package(
             ]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/roxiemobile/swift-commons-ios",
+            exact: "1.7.0"
+        ),
+    ],
     targets: [
         .target(
             name: "ContentProvidersFileSystem",
-            path: "Sources"
+            dependencies: [
+                .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),
+            ],
+            path: "",
+            sources: [
+                "Dependencies",
+                "Sources",
+            ]
         ),
     ],
     swiftLanguageVersions: [.v5]

@@ -11,6 +11,7 @@
 // ----------------------------------------------------------------------------
 
 import Foundation
+import ContentProvidersFileSystem
 import CryptoKit
 import GRDB
 import SwiftCommonsConcurrent
