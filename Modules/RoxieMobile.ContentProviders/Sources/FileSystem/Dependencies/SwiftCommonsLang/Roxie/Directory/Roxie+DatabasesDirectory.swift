@@ -21,7 +21,7 @@ extension Roxie {
 
     /// Returns the databases directory for the current user.
     public static var databasesDirectory: URL? {
-        return Directory.databases
+        Directory.databases
     }
 
 // MARK: - Private Methods
