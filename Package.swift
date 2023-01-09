@@ -16,7 +16,6 @@ let package = Package(
             type: .static,
             targets: ["ContentProviders"]
         ),
-
         .library(
             name: "ContentProvidersFileSystem",
             type: .static,
@@ -56,17 +55,23 @@ let package = Package(
                 .target(name: "ContentProvidersUserDefaults"),
             ]
         ),
-
         .target(
             name: "ContentProvidersFileSystem",
-            path: "Modules/RoxieMobile.ContentProviders/Sources/FileSystem/Sources"
+            dependencies: [
+                .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),
+            ],
+            path: "",
+            sources: [
+                "Modules/RoxieMobile.ContentProviders/Sources/FileSystem/Dependencies",
+                "Modules/RoxieMobile.ContentProviders/Sources/FileSystem/Sources",
+            ]
         ),
         .target(
             name: "ContentProvidersSQLite",
             dependencies: [
+                "ContentProvidersFileSystem",
                 "ZIPFoundation",
                 .product(name: "GRDB", package: "GRDB.swift"),
-                .product(name: "SwiftCommonsExtensions", package: "swift-commons-ios"),
             ],
             path: "Modules/RoxieMobile.ContentProviders/Sources/SQLite/Sources"
         ),
